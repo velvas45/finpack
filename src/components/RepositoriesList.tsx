@@ -36,26 +36,34 @@ const RepositoriesList: React.FC = () => {
             <p>{item.description}</p>
           </div>
           <div className="contentLink">
-            <div>
-              <a href={item.links.npm} target="_blank">
-                <DiNpm />
-              </a>
-            </div>
-            <div>
-              <a href={item.links.homepage} target="_blank">
-                <AiFillHome />
-              </a>
-            </div>
-            <div>
-              <a href={item.links.repository} target="_blank">
-                <AiFillGithub />
-              </a>
-            </div>
-            <div>
-              <a href={item.links.bugs} target="_blank">
-                <IoIosBug />
-              </a>
-            </div>
+            {item.links.npm && (
+              <div>
+                <a href={item.links.npm} target="_blank">
+                  <DiNpm />
+                </a>
+              </div>
+            )}
+            {item.links.homepage && (
+              <div>
+                <a href={item.links.homepage} target="_blank">
+                  <AiFillHome />
+                </a>
+              </div>
+            )}
+            {item.links.repository && (
+              <div>
+                <a href={item.links.repository} target="_blank">
+                  <AiFillGithub />
+                </a>
+              </div>
+            )}
+            {item.links.bugs && (
+              <div>
+                <a href={item.links.bugs} target="_blank">
+                  <IoIosBug />
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -94,8 +102,10 @@ const RepositoriesList: React.FC = () => {
 
       {error && <h3>{error}</h3>}
       {loading && <Loader />}
+
       {!error &&
         !loading &&
+        data.length > 0 &&
         data.map((item) => <ListRepositories key={item.name} item={item} />)}
     </div>
   );
